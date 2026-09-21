@@ -8,6 +8,8 @@ This repository contains the Homebrew formula for [auto-wallpaper](https://githu
 - macOS 15 or later
 - [Homebrew](https://brew.sh/)
 
+The formula builds from the tagged source archive and the dependency versions locked in the upstream `Package.resolved` file.
+
 ## Installation
 
 Add the tap and trust the formula:
@@ -86,6 +88,15 @@ brew upgrade auto-wallpaper
 brew services restart auto-wallpaper
 ```
 
+## Publishing a release
+
+1. Merge and test the upstream release commit on `main`.
+2. Create and push the upstream version tag.
+3. Download the tagged archive and calculate its SHA-256 checksum.
+4. Update the formula URL and checksum. Confirm that its macOS floor still matches Homebrew's current Tier 1 matrix.
+5. Run `brew style`, `brew audit --new --formula`, a clean-cache source fetch, a network-isolated source install, and `brew test`.
+6. Test `brew services` start, list, restart, and stop without `sudo`.
+
 ## Uninstalling
 
 ```bash
@@ -103,3 +114,7 @@ Report application bugs in the
 
 Report installation or formula problems in the
 [homebrew-tap repository](https://github.com/tomaskub/homebrew-tap/issues).
+
+## License
+
+`auto-wallpaper` is licensed under GPL-3.0-or-later.
